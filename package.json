@@ -1,0 +1,36 @@
+{
+  "name": "node-runner-template",
+  "version": "1.0.0",
+  "description": "A simple base template to be used by various executable node projects",
+  "main": "src/index.ts",
+  "bin": "dist/index.js",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "test": "jest",
+    "prepack": "npm run build",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "package": "npm run build && pkg ."
+  },
+  "author": "Garmingo",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "targets": [
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-win-x64"
+    ],
+    "outputPath": "bundle"
+  }
+}
