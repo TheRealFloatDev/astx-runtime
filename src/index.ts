@@ -22,31 +22,39 @@ import { readFileSync } from "fs";
 
 program
   .version("1.0.0")
-  .description("Compile and run your .astx files")
-  .option("compile <input> <output>", "Compile a .js file to a .astx file")
-  .option("run <input>", "Run a .astx file")
-  .action((options) => {
-    if (options.compile) {
-      console.log("Compiling...");
+  .description("Compile .js to .astx")
+  .command("compile <input> <output>")
+  .action((input, output) => {
+    console.log("Compiling...");
 
-      const start = performance.now();
-      const fileContent = readFileSync(options.compile[0], "utf-8");
+    const start = performance.now();
+    const fileContent = readFileSync(input, "utf-8");
 
-      if (!fileContent) {
-        console.error("File not found");
-        process.exit(1);
-      }
-
-      const compiled = compile(fileContent);
-
-      saveToFile(compiled, options.compile[1]);
-      console.log(`Compiled in ${performance.now() - start}ms`);
-    } else if (options.run) {
-      console.log("Running...");
-
-      const program = loadFromFile(options.run[0]);
-      run(program);
+    if (!fileContent) {
+      console.error("File not found");
+      process.exit(1);
     }
+
+    const compiled = compile(fileContent);
+
+    if (!output.endsWith(".astx")) {
+      output += ".astx";
+    }
+
+    saveToFile(compiled, output);
+    console.log(`Compiled in ${performance.now() - start}ms`);
   });
+
+program
+  .description("Run .astx files")
+  .command("run <input>")
+  .action((input) => {
+    console.log("Running...");
+
+    const program = loadFromFile(input);
+    run(program);
+  });
+
+program.showHelpAfterError();
 
 program.parse(process.argv);
