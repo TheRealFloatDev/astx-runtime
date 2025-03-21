@@ -16,9 +16,15 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { compile, loadFromFile, run, saveToFile } from "@astx/lib";
+import {
+  compile,
+  generateJSCode,
+  loadFromFile,
+  run,
+  saveToFile,
+} from "@astx/lib";
 import { program } from "commander";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 
 program
   .version("1.0.0")
@@ -53,6 +59,23 @@ program
 
     const program = loadFromFile(input);
     run(program);
+  });
+
+program
+  .description(
+    "Generate .js code from .astx files (For debugging - code is not optimized or human readable)"
+  )
+  .command("gen <input> <output>")
+  .action((input, output) => {
+    console.log("Loading .astx file...");
+
+    const program = loadFromFile(input);
+
+    console.log("Generating JS Code...");
+    const code = generateJSCode(program);
+
+    console.log("Saving to file...");
+    writeFileSync(output, code);
   });
 
 program.showHelpAfterError();
