@@ -7,3 +7,6 @@
 
 # Build files
 /dist
+
+# Local playground
+demo
