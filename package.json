@@ -22,10 +22,11 @@
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "pkg": "^5.8.1"
   },
   "dependencies": {
-    "pkg": "^5.8.1"
+    "@astx/lib": "^1.0.0"
   },
   "pkg": {
     "targets": [
