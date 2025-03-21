@@ -1,6 +1,6 @@
 {
   "name": "@astx/runtime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compile and run ASTX files from your command line",
   "main": "src/index.ts",
   "bin": {
@@ -26,7 +26,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@astx/lib": "^1.0.0",
+    "@astx/lib": "^1.0.1",
     "commander": "^13.1.0"
   },
   "pkg": {
