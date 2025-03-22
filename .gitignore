@@ -10,3 +10,6 @@
 
 # Local playground
 demo
+
+# Mac .DS_Store files
+.DS_Store
