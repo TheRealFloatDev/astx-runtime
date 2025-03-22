@@ -79,6 +79,16 @@ program
     writeFileSync(output, code);
   });
 
+program
+  .description(
+    "Show the version of the runtime and the astx/lib that includes the compiler"
+  )
+  .command("version")
+  .action(() => {
+    console.log(`Runtime: ${process.env.npm_package_version || "Unknown"}`);
+    console.log(`Compiler: ${require("@astx/lib/package.json").version}`);
+  });
+
 program.showHelpAfterError();
 program.version(process.env.npm_package_version || "0.0.0");
 
