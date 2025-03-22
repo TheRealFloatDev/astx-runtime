@@ -27,7 +27,6 @@ import { program } from "commander";
 import { readFileSync, writeFileSync } from "fs";
 
 program
-  .version("1.0.0")
   .description("Compile .js to .astx")
   .command("compile <input> <output>")
   .action((input, output) => {
@@ -81,5 +80,6 @@ program
   });
 
 program.showHelpAfterError();
+program.version(process.env.npm_package_version || "0.0.0");
 
 program.parse(process.argv);
