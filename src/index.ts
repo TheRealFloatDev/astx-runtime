@@ -26,6 +26,8 @@ import {
 import { program } from "commander";
 import { readFileSync, writeFileSync } from "fs";
 
+const version = require("../package.json").version;
+
 program
 
   .command("compile <input> <output>")
@@ -89,11 +91,11 @@ program
     "Show the version of the runtime and the astx/lib that includes the compiler"
   )
   .action(() => {
-    console.log(`Runtime: ${process.env.npm_package_version || "Unknown"}`);
+    console.log(`Runtime: ${version}`);
     console.log(`Compiler: ${require("@astx/lib/package.json").version}`);
   });
 
 program.showHelpAfterError();
-program.version(process.env.npm_package_version || "0.0.0");
+program.version(version);
 
 program.parse(process.argv);
