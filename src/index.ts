@@ -27,8 +27,9 @@ import { program } from "commander";
 import { readFileSync, writeFileSync } from "fs";
 
 program
-  .description("Compile .js to .astx")
+
   .command("compile <input> <output>")
+  .description("Compile .js to .astx")
   .action((input, output) => {
     console.log("Compiling...");
 
@@ -51,8 +52,9 @@ program
   });
 
 program
-  .description("Run .astx files")
+
   .command("run <input>")
+  .description("Run .astx files")
   .action((input) => {
     console.log("Running...");
 
@@ -63,10 +65,11 @@ program
   });
 
 program
+
+  .command("gen <input> <output>")
   .description(
     "Generate .js code from .astx files (For debugging - code is not optimized or human readable)"
   )
-  .command("gen <input> <output>")
   .action((input, output) => {
     console.log("Loading .astx file...");
 
@@ -80,10 +83,11 @@ program
   });
 
 program
+
+  .command("version")
   .description(
     "Show the version of the runtime and the astx/lib that includes the compiler"
   )
-  .command("version")
   .action(() => {
     console.log(`Runtime: ${process.env.npm_package_version || "Unknown"}`);
     console.log(`Compiler: ${require("@astx/lib/package.json").version}`);
