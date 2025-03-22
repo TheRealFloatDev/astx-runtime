@@ -58,7 +58,9 @@ program
     console.log("Running...");
 
     const program = loadFromFile(input);
-    run(program);
+    run(program, {
+      mode: "vm",
+    });
   });
 
 program
