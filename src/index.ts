@@ -25,6 +25,7 @@ import {
 } from "@astx/lib";
 import { program } from "commander";
 import { readFileSync, writeFileSync } from "fs";
+import path from "path";
 
 const version = require("../package.json").version;
 
@@ -61,8 +62,15 @@ program
     console.log("Running...");
 
     const program = loadFromFile(input);
+
+    const folder = path.dirname(input);
+
     run(program, {
       mode: "vm",
+      inject: {
+        __dirname: folder,
+        __filename: input,
+      },
     });
   });
 
