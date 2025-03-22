@@ -26,7 +26,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@astx/lib": "^1.3.1",
+    "@astx/lib": "^1.3.2",
     "commander": "^13.1.0"
   },
   "pkg": {
